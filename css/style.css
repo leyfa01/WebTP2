@@ -1,0 +1,579 @@
+
+:root {
+    --largeur : 100vw;
+    --couleur-barre : rgb(107, 218, 107);
+    --couleur-texte : rgb(139, 70, 42);
+    --couleur-fond : rgb(230,232,173);
+    --couleur-faux : rgb(234, 63, 56);
+    --couleur-vrai :rgb(112, 181, 68) ;
+    --couleur-fond-principale : rgb(189, 211, 155);
+    --couleur-texte-principale : orangered;
+    --image-1 : url(../media/horizontal1.png);
+    --image-2 : url(../media/horizontal2.png);
+    --image-3: url(../media/horizontal3.png);
+    --image-4: url(../media/horizontal4.png);
+    --image-5 : url(../media/horizontal5.png);
+    --image-6 : url(../media/horizontal6.png);
+    --image-7 : url(../media/horizontal7.png);
+    --image-8: url(../media/horizontal8.png);
+    --image-9: url(../media/horizontal9.png);
+    --image-10 : url(../media/horizontal10.png);
+    --scores : "";
+    --mouse-x: 0px;
+    --mouse-y: 0px;
+}
+
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select:none;
+}
+html {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    overflow: hidden;
+    font-size: clamp(14px, 0.5rem + 0.5vw, 24px);
+    cursor: none;
+}
+body {
+    max-width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/*curseur personnalisé */
+.curseur {
+    width: 2.4rem;
+    height: 2.4rem;
+    position: fixed;
+    top: calc(var(--mouse-y) - 1.2rem);
+    left: calc(var(--mouse-x) - 1.2rem);
+    pointer-events: none;
+    will-change: top, left;
+    z-index: 100;
+}
+/*///////////////////////// Intro///////////////////////////// */
+main.intro {
+    width: 100vw;
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+}
+section.sectionIntro {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+div.img::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;  
+}
+/* Animation des images d'introduction */
+.i1 {animation: venirGauche 1s 1s ease-in both;}
+.i2 {animation: venirGauche 1s 0.75s ease-in both;}
+.i3 {animation: venirGauche 1s 0.5s ease-in both;}
+.i4 {animation: venirGauche 1s 0.25s ease-in both;}
+.i5 {animation: venirGauche 1s ease-in both;}
+.i6 {animation: venirDroite 1s ease-in both;}
+.i7 {animation: venirDroite 1s 0.25s ease-in both;}
+.i8 {animation: venirDroite 1s 0.5s ease-in both;}
+.i9 {animation: venirDroite 1s 0.75s ease-in both;}
+.i10 {animation: venirDroite 1s 1s ease-in both;}
+div.img.i1::before {background-image: var(--image-1);}
+div.img.i2::before {background-image: var(--image-2);}
+div.img.i3::before {background-image: var(--image-3);}
+div.img.i4::before {background-image: var(--image-4);}
+div.img.i5::before {background-image: var(--image-5);}
+div.img.i6::before {background-image: var(--image-6);}
+div.img.i7::before {background-image: var(--image-7);}
+div.img.i8::before {background-image: var(--image-8);}
+div.img.i9::before {background-image: var(--image-9);}
+div.img.i10::before {background-image: var(--image-10);}
+div.img {
+    height: 16vh;
+    width: 100vw;
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+/* Animation du titre d'introduction */
+div.titre {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--couleur-fond-principale);
+    color: var(--couleur-texte-principale);
+    border: 5px solid orangered;
+    padding: 25px;
+    animation: bounce 1.5s linear, bounce-continue 0.15s 1.5s linear 5 forwards; 
+}
+.titre h1 {
+    text-align: center;
+    font-family: 'Petit Formal Script', cursive;
+    font-size: 35px;
+}/* Footer contenant les consignes pour commencer le quizz*/
+footer {
+    background-color: var(--couleur-fond-principale);
+    height: 20vh;
+    border: orangered 5px solid;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    width: 100%;
+}
+footer h1 {
+    color: var(--couleur-texte-principale);
+    font-family: 'Rancho', cursive;
+    text-align: center;
+    font-size: 30px;
+}
+@keyframes venirGauche {
+    from {
+        transform: translateX(-100vw);
+    } to {
+        transform: translateX(0vw);
+    }
+}
+@keyframes venirDroite {
+    from {
+        transform: translateX(100vw);
+    } to {
+        transform: translateX(0vw);
+    }
+}
+/* Animation du titre quizzine, elle vient par la gauche pour revenir par la droite et rebondir sur les cotés */
+@keyframes bounce {
+    0% {
+      transform: translateX(-200%) translateY(-50%);
+    }
+    47.5% {
+      transform: translateX(0) translateY(-50%);
+    }
+    74% {
+      transform: translateX(-100px) translateY(-50%);
+    }
+    to {
+      transform: translateX(-50%) translateY(-50%);
+    }
+}
+@keyframes bounce-continue {
+    0% {
+      transform: translateX(-50%) translateY(-50%);
+    }
+    50% {
+    transform: translateX(-55%) translateY(-50%);
+    }
+    100% {
+      transform: translateX(-50%) translateY(-50%);
+    }
+}
+
+/*//////////////////////////////// Quiz //////////////////////////////////////////*/
+main.quizzine {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    display: none;
+    background-image: url(../media/0/fond.gif);
+    background-size: cover;
+}
+header {
+    width: 100%;
+    height: 15vh;
+    text-align: center;
+    color: var(--couleur-texte);
+    /*Conteneur flex en rangée*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 auto;
+    background-color: var(--couleur-fond);
+    position: relative; 
+}
+/* Titre du site (Quizzine) */
+h1.quizzineTitre {
+    font-size: 80px;
+    font-family: 'Petit Formal Script', cursive;
+}
+
+section.sectionQuiz {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    flex: 1 1 auto;
+    height: 70vh;
+}
+/* Question du quizz */
+.questions {
+    height: 15vh;
+    position: relative;
+    text-align: center;
+    width: 80vw;
+    background-color: var(--couleur-fond);
+    color: var(--couleur-texte);
+    border-radius: 20px;
+    font-size: 30px;
+    font-weight: bolder;
+    font-family: 'Rancho', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Les choix de réponse  */
+.choix {
+    display: flex;
+    flex-direction: column;
+}
+.unChoix {
+    height: 160px;
+    width: 160px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 auto;
+    margin-bottom: 40px;
+    border-radius: 50%;
+}
+/* Image des choix de réponse  */
+.unChoix img {
+    height: 120px;
+    width: 120px;
+}
+.unChoix::after{
+    position:absolute;
+    content:"";
+    left: 0%;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    background-image: url("../media/bulle.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/*Quand on hover l'image grossis*/
+.unChoix:hover, unChoix:active {
+ scale: 1.2;
+}
+.premierChoix {
+    animation: animationChoixHautBas 4s linear infinite;
+}
+.deuxiemeChoix {
+    animation: animationChoixHautBas 4s 0.2s linear infinite;
+}
+/* Le choix non choisis disparais */
+.nonChoisi {
+    animation: disparitionChoix 1s ease-in forwards;
+}
+/* lorsque la réponse est fausse */
+.choixFaux {background-color: var(--couleur-faux);}
+.question-fausse {color: var(--couleur-faux); background-color: var(--couleur-faux);}
+.question-fausse::after {
+    position:absolute;
+    content:"";
+    background-image: url(../media/iconx.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+}
+/* lorsque la réponse est vrai */
+.choixCorrect {background-color:var(--couleur-vrai);}
+.question-correcte { color: var(--couleur-vrai); background-color:var(--couleur-vrai); }
+.question-correcte::after {
+    position: absolute;
+    content:"";
+    background-image: url(../media/iconv.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+}
+/*///////////////////   L'asiette   /////////////////////////////////*/
+.assiette {
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    border-radius: 50%;
+    bottom: -125px;
+    animation: rotationDisque 3s linear infinite;
+    display: none;
+}
+.assiette::after {
+    content: "";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url(../media/assiette.png);
+    background-size: cover;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    font-size: 50px;
+    position: absolute;
+}
+/* À la fin du quizz l'assiette vient au milieu pour montrer le score du joueur  */
+.assietteReponse {
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    border-radius: 50%;
+    bottom: -125px;
+    animation: amenerAuMilieu 2s linear forwards;
+}
+.assietteReponse::after {
+    content: var(--scores);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url(../media/assiette.png);
+    background-size: cover;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    font-size: 50px;
+    position: absolute;
+}
+/* Animation de l'assiette qui vient au milieu  */
+@keyframes amenerAuMilieu {
+    from {
+        transform: translateY(0);
+        scale: 1;
+    }
+    to {
+        transform: translateY(-100%);
+        scale: 2;
+    }
+}
+/* L'assiette est rouge lorsque la réponse est fausse */
+.assietteRouge {
+    filter: sepia(1) brightness(0.6) hue-rotate(-70deg) saturate(5);
+}
+/* L'assiette est vert lorsque la réponse est vrai */
+.assietteVerte {
+    filter: sepia(1) brightness(0.6) hue-rotate(90deg) saturate(5) contrast(2);
+}
+/*//////////////////////// Barre de temps  ////////////////////////////// */
+.barre-de-temps {
+    height: 1.5vh;
+    width: var(--largeur);
+    background-color: var(--couleur-barre);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border-radius: 10px;
+    animation: minuteur 0.04s 1000 linear;
+    will-change: left top width;
+}
+.pasDeClic {
+    pointer-events: none;
+}
+@keyframes minuteur {
+    from, to {
+        border-radius: 10px;
+    }
+}
+ /* Animation des deux choix en attente de la décision du joueur*/
+@keyframes animationChoixHautBas {
+    from, 40%, 80%, to{
+        transform: translateY(-10px);
+    }
+    10%, 50%, 85% {
+        transform: translateY(5px);
+    }
+    20%, 60%, 90% {
+        transform: translateY(-12px);
+    }
+    30%, 70%, 95%{
+        transform: translateY(7px);
+    }
+}
+ /* Animation de la rotation en continue de l'assiette */
+@keyframes rotationDisque {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+ /* Animation de la disparition d'un choix non-choisis*/
+@keyframes disparitionChoix {
+    from {
+        scale: 1;
+    }
+    to {
+        scale: 0;
+    }
+}
+
+/* ///////////////////////////////// Fin du quizz ////////////////////////  */
+.finQuiz {
+    display: none;
+    background-image: url(../media/fondFin.png);
+    background-size: contain;
+    width: 100vw;
+    height: 100vh; 
+    flex-direction: column;
+}
+
+
+
+.finQuiz img:not(.recommencer img) {
+    position: absolute;
+    height: 100px;
+    width: 100px; 
+    transform-origin: bottom;
+}
+/* Décoration d'onigiri au quatre coin et une au mileu
+ seulement lorsque le média est de 992px et plus */
+.oniHautDroite {
+    right: 5vw;
+    top: 0;
+    animation: gauchedroite1 2s linear infinite;
+}
+.oniHautGauche {
+    top: 0;
+    left: 5vw;
+    animation: gauchedroite1 2s linear infinite;
+}
+.oniBasDroite {
+    right: 5vw;
+    bottom: 0;
+    animation: gauchedroite1 2s linear infinite;
+}
+.oniBasGauche {
+    left: 5vw;
+    bottom: 0;
+    animation: gauchedroite1 2s linear infinite;
+}
+.oniHautMilieu {
+    right: calc(50vw - 125px);
+    top: 0;
+    animation: gauchedroite1 2s linear infinite;
+    display: none;
+}
+ /* Bouton recommencer*/
+.recommencer {
+    opacity: 0;
+    width: 50px;
+    height: 50px;
+    right: calc(50vw - 50px);
+    bottom: 20vh;
+    position: absolute;
+}
+.recommencer img {
+    width: 50px;
+    height: 50px;
+}
+/* Animation des onigiri */
+@keyframes gauchedroite1 {
+    from {
+        transform: rotate(45deg);
+    }
+    50% {
+        transform: rotate(-45deg);
+    }
+    to {
+        transform: rotate(45deg);
+    }
+}
+@keyframes gauchedroite2 {
+    from {
+        transform: rotate(-45deg);
+    }
+    50% {
+        transform: rotate(45deg);
+    }
+    to {
+        transform: rotate(-45deg);
+    }
+}
+/* /////////////////////////Media 992px et plus////////////////////////// */
+@media screen and (min-width: 992px) {
+    section.sectionIntro {
+        flex-direction: row;
+    }
+    div.img {
+        height: 80vh;
+        width: 20vw;
+    }
+    :root {
+        --image-1 : url(../media/vertical1.png);
+        --image-2 : url(../media/vertical2.png);
+        --image-3 : url(../media/vertical3.png);
+        --image-4 : url(../media/vertical4.png);
+        --image-5 : url(../media/vertical5.png);
+        --image-6 : url(../media/vertical6.png);
+        --image-7 : url(../media/vertical7.png);
+        --image-8 : url(../media/vertical8.png);
+        --image-9 : url(../media/vertical9.png);
+        --image-10 : url(../media/vertical10.png);
+    }
+    .questions {
+        max-width: 1000px;
+        font-size: 60px;
+    }
+    .titre h1 {
+        font-size: 70px;
+    }
+    footer h1 {
+        font-size: 60px;
+    }
+    @keyframes amenerAuMilieu {
+        from {
+            transform: translateY(0);
+            scale: 1;
+        }
+        to {
+            transform: translateY(-55%);
+            scale: 3;
+        }
+    }
+    .finQuiz img:not( img) {
+        height: 250px;
+        width: 250px;
+      }
+    
+    .oniHautMilieu {
+        display: initial;
+    }
+    .recommencer {
+        bottom: 1vh;
+    }
+}
